@@ -24,7 +24,7 @@ ExecStartPre=-/usr/bin/docker kill awesomeJavaAppliction-%i
 ExecStartPre=-/usr/bin/docker rm awesomeJavaAppliction-%i
 ExecStartPre=-/bin/bash -c '/usr/bin/docker rmi $(docker images | grep perceptivecloud/awesomeJavaAppliction)'
 ExecStartPre=/usr/bin/docker login -e="<<email>>" -u="<<username>>" -p="<<password>>"
-ExecStartPre=/usr/bin/docker pull perceptivecloud/awesomeJavaAppliction:<%= commit_hash %>
+ExecStartPre=/usr/bin/docker pull Docker Hub Organization/awesomeJavaAppliction:<%= commit_hash %>
 ExecStart=/usr/bin/docker run --rm -m="3G" --name awesomeJavaAppliction-%i --hostname awesomeJavaAppliction-%i \
 -e ENVIRONMENT_VARIABLE=Test \
 ExecStop=/usr/bin/docker stop awesomeJavaAppliction-%i
