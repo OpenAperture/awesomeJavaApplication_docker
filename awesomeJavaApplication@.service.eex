@@ -1,0 +1,33 @@
+# CloudOS Deployment Fleet serivce file.
+#
+# This File is used to deploy fNs via Fleet.
+#
+# == Contact
+#
+# Author:: Trantor (rad.trantor@perceptivesoftware.com)
+# Copyright:: 2015 Lexmark International Technology S.A. All rights reserved.
+# License:: n/a
+#
+# VERSION 0.1.0
+#
+# BUILD DATE/TIME <%= timestamp %>
+#
+[Unit]
+Description=awesomeJavaAppliction
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+User=root
+ExecStartPre=-/usr/bin/docker kill awesomeJavaAppliction-%i
+ExecStartPre=-/usr/bin/docker rm awesomeJavaAppliction-%i
+ExecStartPre=-/bin/bash -c '/usr/bin/docker rmi $(docker images | grep perceptivecloud/awesomeJavaAppliction)'
+ExecStartPre=/usr/bin/docker login -e="<<email>>" -u="<<username>>" -p="<<password>>"
+ExecStartPre=/usr/bin/docker pull perceptivecloud/awesomeJavaAppliction:<%= commit_hash %>
+ExecStart=/usr/bin/docker run --rm -m="3G" --name awesomeJavaAppliction-%i --hostname awesomeJavaAppliction-%i \
+-e ENVIRONMENT_VARIABLE=Test \
+ExecStop=/usr/bin/docker stop awesomeJavaAppliction-%i
+
+[X-Fleet]
+Conflicts=awesomeJavaAppliction@*.service
