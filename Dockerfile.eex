@@ -2,6 +2,5 @@
     FROM perceptivecloud/stack-tomcat7
     ADD . /build
     RUN chmod +x /build/install.sh
-    RUN /build/install.sh
-    RUN rm -rf /build && apt-get clean
-    EXPOSE 8080
+    RUN /build/install.sh <%= commit_hash %>
+    RUN rm -rf /build 
