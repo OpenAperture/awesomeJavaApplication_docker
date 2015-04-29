@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Example config file, which includes settings of the deployed application (e.g. Tomcat settings, 
+or database connection data). If the config file works with evironment variables, you are able to set them
+in the awesomeJavaApplication@.service.eex file.
+ -->
+ 
+<awesomeSettings>
+  <Setting1>Value</Setting1>
+  <Setting2>Value</Setting2>
+  <Setting3>$ENVIRONMENT_VARIABLE</Setting3>
+</awesomeSettings>
+ 
+ 
